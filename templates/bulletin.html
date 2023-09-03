@@ -1,0 +1,34 @@
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+Объявление {{ bulletin.title }}
+{% endblock title %}
+
+
+{% block content %}<br>
+<h4>Категория: {{ bulletin.get_category_display }}</h4><br>
+<h2>{{ bulletin.content|safe }}</h2><br>
+<h5>Автор: {{ bulletin.user }}</h5>
+
+{% if bulletin.user == request.user %}
+<a href="{% url 'bulletin_edit' bulletin.id %}"><u>Редактировать</u></a>
+{% endif %}
+
+{% if message_response %}
+<h6>Ваш отклик успешно отправлен</h6><br>
+{% endif %}
+
+{% if surf_response %}
+<h6>Ваше мнение:</h6><br>
+<form method="post">
+    {% csrf_token %}
+    <p><textarea name="respText"></textarea></p>
+    <input type="submit" value="Оставить отклик">
+</form><br><br>
+{% endif %}
+
+
+<hr>
+
+{% endblock content %}

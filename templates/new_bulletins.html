@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Здравствуй! Новые объявления за прошедшую неделю:</h2>
+<ul>
+  {% for bulletin in bulletins %}
+      <li><a href="{{ link }}{{ bulletin.get_absolute_url }}">{{ bulletin.title }}</a></li>
+  {% endfor %}
+</ul>
+</body>
+</html>
